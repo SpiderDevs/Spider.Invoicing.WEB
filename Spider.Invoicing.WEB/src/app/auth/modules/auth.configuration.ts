@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 export class DefaultConfiguration {
-    stsServer = 'https://localhost:44318';
-    redirect_url = 'https://localhost:44311';
+    stsServer = 'http://localhost:4200';
+    redirect_url = 'http://localhost:5000';
     // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified by the iss (issuer) Claim as an audience.
     // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional audiences not trusted by the Client.
     client_id = 'angularclient';
@@ -10,7 +10,7 @@ export class DefaultConfiguration {
     // For some oidc, we require resource identifier to be provided along with the request.
     resource = '';
     scope = 'openid email profile';
-    post_logout_redirect_uri = 'https://localhost:44311/unauthorized';
+    post_logout_redirect_uri = 'http://localhost:5000/unauthorized';
     start_checksession = false;
     silent_renew = true;
     startup_route = '/dataeventrecords';
@@ -28,7 +28,7 @@ export class DefaultConfiguration {
     // limiting the amount of time that nonces need to be stored to prevent attacks.The acceptable range is Client specific.
     max_id_token_iat_offset_allowed_in_seconds = 3;
     override_well_known_configuration = false;
-    override_well_known_configuration_url = 'https://localhost:44386/wellknownconfiguration.json';
+    override_well_known_configuration_url = 'https://localhost:5000/wellknownconfiguration.json';
 
     storage = typeof Storage !== 'undefined' ? sessionStorage : null;
 }

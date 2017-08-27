@@ -8,11 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { InvoicingComponent } from './components/invoicing/invoicing.component';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { OidcSecurityService } from './auth/services/oidc.security.service';
 import { OpenIDImplicitFlowConfiguration } from './auth/modules/auth.configuration';
 import { AuthModule } from './auth/modules/auth.module';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AuthModule } from './auth/modules/auth.module';
   ],
   providers: [
     OidcSecurityService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })
@@ -41,14 +43,14 @@ export class AppModule {
 
       let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
-      openIDImplicitFlowConfiguration.stsServer = 'https://localhost:44318';
-      openIDImplicitFlowConfiguration.redirect_url = 'https://localhost:44372';
+      openIDImplicitFlowConfiguration.stsServer = 'http://localhost:5000';
+      openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200';
       // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified by the iss (issuer) Claim as an audience.
       // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional audiences not trusted by the Client.
       openIDImplicitFlowConfiguration.client_id = 'angularclientidtokenonly';
       openIDImplicitFlowConfiguration.response_type = 'id_token';
       openIDImplicitFlowConfiguration.scope = 'openid profile email';
-      openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'https://localhost:44372/Unauthorized';
+      openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200/Unauthorized';
       openIDImplicitFlowConfiguration.start_checksession = false;
       openIDImplicitFlowConfiguration.silent_renew = true;
       openIDImplicitFlowConfiguration.startup_route = '/home';

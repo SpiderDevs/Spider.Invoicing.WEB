@@ -1,0 +1,9 @@
+<md-grid-list cols="12" rowHeight="50px">
+    <md-grid-tile [colspan]="12"><h1>403</h1></md-grid-tile>
+    <md-grid-tile [colspan]="12"><h2>You have no rights to access this.</h2></md-grid-tile>
+    <md-grid-tile [colspan]="12"><h2> <a (click)="login()"> Login </a> to get access</h2></md-grid-tile>
+    <md-grid-tile [rowspan]="8" [colspan]="3"></md-grid-tile>
+    <md-grid-tile [rowspan]="8" [colspan]="6"><img  src="{{forbiddenImgUrl}}" alt="Forbidden img" width="400" height="400"></md-grid-tile>
+    <md-grid-tile [rowspan]="8" [colspan]="3"></md-grid-tile>
+    <md-grid-tile [rowspan]="4" [colspan]="12"></md-grid-tile>
+  </md-grid-list>
