@@ -1,0 +1,17 @@
+<mat-sidenav-container>  
+    <mat-sidenav #sidenav mode="side" class="app-sidenav">
+      Sidenav
+    </mat-sidenav>  
+    <mat-toolbar color="primary">
+      <button mat-button (click)="sidenav.toggle()">
+              <i class="material-icons app-toolbar-menu">menu</i>
+            </button> 
+            
+            <button mat-button routerLink="/home">Home</button>   
+            <button mat-button routerLink="/invoicing" >Invoicing</button>     
+      <span class="app-toolbar-filler"></span>    
+    </mat-toolbar>  
+    <div class="basic-container">
+      <router-outlet></router-outlet>
+    </div>  
+  </mat-sidenav-container>
