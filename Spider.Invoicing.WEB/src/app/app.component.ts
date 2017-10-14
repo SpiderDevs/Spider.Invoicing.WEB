@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
+import { OidcSecurityService } from './auth/services/oidc.security.service';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -9,4 +11,45 @@ import {MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 })
 export class AppComponent {
   title = 'Invoicing demo';
+
+  isAuthorizedSubscription: Subscription;
+  isAuthorized: boolean;
+
+  constructor(public securityService: OidcSecurityService) {
+  }
+
+  ngOnInit() {
+    console.log('AppComponent ngOnInit');
+    this.isAuthorizedSubscription = this.securityService.getIsAuthorized().subscribe(
+        (isAuthorized: boolean) => {
+          
+          console.log('AppComponent ngOnInit isAuthorized:' + isAuthorized);
+            this.isAuthorized = isAuthorized;
+        });
+
+    if (window.location.hash) {
+        this.securityService.authorizedCallback();
+    }
 }
+
+ngOnDestroy(): void {
+    this.isAuthorizedSubscription.unsubscribe();
+}
+  
+
+  login() {
+      console.log('start login');
+      this.securityService.authorize();
+  }
+
+  refreshSession() {
+      console.log('start refreshSession');
+      this.securityService.authorize();
+  }
+
+  logout() {
+      console.log('start logoff');
+      this.securityService.logoff();
+  }
+}
+
