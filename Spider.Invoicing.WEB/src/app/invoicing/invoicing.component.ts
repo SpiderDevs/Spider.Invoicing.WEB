@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {MatTableModule} from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+
+import { ResponseBase } from '../models/response.base';
+import { Invoice } from './models/invoice.model';
+
+import {InvoicesDataSource} from './invoices.datasource';
 
 @Component({
   selector: 'app-invoicing',
@@ -7,9 +15,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoicingComponent implements OnInit {
 
-  constructor() { }
+  public displayedColumns = ['number', 'net', 'vat', 'gross', 'created_at'];
+  public dataSource: InvoicesDataSource;
+  public invoicesIsLoading: boolean;
+
+  constructor(private http: HttpClient) {
+    this.dataSource = new InvoicesDataSource(http);
+    this.dataSource.getIsLoading().subscribe(value => { this.invoicesIsLoading = value; () => console.log("Nev value in isLoadfing"); } );
+   }
 
   ngOnInit() {
   }
-
 }
+
+    
+  

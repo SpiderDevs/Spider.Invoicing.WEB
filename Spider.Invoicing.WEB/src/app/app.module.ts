@@ -43,6 +43,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { OidcSecurityService } from './auth/services/oidc.security.service';
 import { OpenIDImplicitFlowConfiguration } from './auth/modules/auth.configuration';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
     AuthModule.forRoot(),
     HttpModule,
     JsonpModule,
-    
+    HttpClientModule,
   
     //Material
     MatAutocompleteModule,

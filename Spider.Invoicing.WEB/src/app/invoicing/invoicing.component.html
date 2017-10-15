@@ -1,3 +1,43 @@
-<p>
-  invoicing works!
-</p>
+<h2>
+ Yours invoices
+</h2>
+
+
+<div class="mat-progress-bar">
+    <mat-progress-bar mode="indeterminate" *ngIf="invoicesIsLoading"></mat-progress-bar>
+</div>
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+  
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="net">
+      <mat-header-cell *matHeaderCellDef> Net </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.netAmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vat">
+      <mat-header-cell *matHeaderCellDef> Vat </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.vatAmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gross">
+      <mat-header-cell *matHeaderCellDef> Gross </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.grossAmmount}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+      <mat-header-cell *matHeaderCellDef> Created at </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.createdAt}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+
