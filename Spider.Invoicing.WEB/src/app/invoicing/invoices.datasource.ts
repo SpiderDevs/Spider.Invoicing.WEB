@@ -1,7 +1,8 @@
 import { MatPaginator, MatSort } from '@angular/material';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { OidcSecurityService } from '../auth/services/oidc.security.service';
 
 import { ResponseBase } from '../models/response.base';
 import { Invoice } from './models/invoice.model';
@@ -14,7 +15,7 @@ export class InvoicesDataSource extends DataSource<any> {
 
     private loading = new BehaviorSubject<boolean>(true);
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private oidcSecurityService: OidcSecurityService) {
         super();
     }
 
@@ -33,6 +34,13 @@ export class InvoicesDataSource extends DataSource<any> {
 
     getInvoices(): Observable<ResponseBase<Invoice[]>> {
         this.loading.next(true);
-        return this.http.get<ResponseBase<Invoice[]>>('http://localhost:64343/api/invoicing');
+        console.log("Bearer "+ this.oidcSecurityService.getToken());
+        const headers = new HttpHeaders()
+        .set("Authorization", "Bearer "+ this.oidcSecurityService.getToken())
+        .set("Access-Control-Allow-Headers","Content-Type")
+        .set("Access-Control-Allow-Methods","GET")
+        .set("Access-Control-Allow-Origin","*")
+        .set('Access-Control-Allow-Credentials', "true");
+        return this.http.get<ResponseBase<Invoice[]>>('http://localhost:64343/api/invoicing',{headers});
     }
 }

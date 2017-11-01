@@ -7,6 +7,7 @@ import { ResponseBase } from '../models/response.base';
 import { Invoice } from './models/invoice.model';
 
 import {InvoicesDataSource} from './invoices.datasource';
+import { OidcSecurityService } from '../auth/services/oidc.security.service';
 
 @Component({
   selector: 'app-invoicing',
@@ -19,8 +20,8 @@ export class InvoicingComponent implements OnInit {
   public dataSource: InvoicesDataSource;
   public invoicesIsLoading: boolean;
 
-  constructor(private http: HttpClient) {
-    this.dataSource = new InvoicesDataSource(http);
+  constructor(private http: HttpClient, private oidcSecurityService: OidcSecurityService) {
+    this.dataSource = new InvoicesDataSource(http,oidcSecurityService);
     this.dataSource.getIsLoading().subscribe(value => { this.invoicesIsLoading = value; () => console.log("Nev value in isLoadfing"); } );
    }
 

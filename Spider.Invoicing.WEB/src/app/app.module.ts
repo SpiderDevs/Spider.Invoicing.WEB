@@ -109,8 +109,8 @@ export class AppModule {
       // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified by the iss (issuer) Claim as an audience.
       // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional audiences not trusted by the Client.
       openIDImplicitFlowConfiguration.client_id = 'angularclientidtokenonly';
-      openIDImplicitFlowConfiguration.response_type = 'id_token';
-      openIDImplicitFlowConfiguration.scope = 'openid profile email';
+      openIDImplicitFlowConfiguration.response_type = 'id_token token';
+      openIDImplicitFlowConfiguration.scope = 'openid customAPI.write profile api1';
       openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200/Unauthorized';
       openIDImplicitFlowConfiguration.start_checksession = false;
       openIDImplicitFlowConfiguration.silent_renew = true;
