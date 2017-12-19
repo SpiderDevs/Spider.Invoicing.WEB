@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent }   from '../home/home.component';
-import { InvoicingComponent }      from '../invoicing/invoicing.component';
-import { ForbiddenComponent }      from '../forbidden/forbidden.component';
+import { HomeComponent } from '../home/home.component';
+import { InvoicingComponent } from '../invoicing/invoicing.component';
+import { ForbiddenComponent } from '../forbidden/forbidden.component';
 import { AuthGuard } from '../auth/auth.guard';
 
 
