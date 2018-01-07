@@ -1,6 +1,12 @@
 # Create image based on the official Node 6 image from dockerhub
 FROM node:8.9
 
+RUN chown -R node:node /usr/local/lib/node_modules \
+  && chown -R node:node /usr/local/bin  
+USER node  
+RUN npm install -g @angular/cli@1.4.5
+USER root
+
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
 
@@ -20,4 +26,4 @@ COPY . /usr/src/app
 EXPOSE 4200
 
 # Serve the app
-CMD ["npm", "start"]
+CMD ["ng", "serve", "-H", "0.0.0.0", "--env=uat"]

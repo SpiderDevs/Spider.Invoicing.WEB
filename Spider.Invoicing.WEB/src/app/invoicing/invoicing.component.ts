@@ -8,6 +8,7 @@ import { Invoice } from './models/invoice.model';
 
 import {InvoicesDataSource} from './invoices.datasource';
 import { OidcSecurityService } from '../auth/services/oidc.security.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-invoicing',
@@ -19,8 +20,10 @@ export class InvoicingComponent implements OnInit {
   public displayedColumns = ['number', 'net', 'vat', 'gross', 'created_at'];
   public dataSource: InvoicesDataSource;
   public invoicesIsLoading: boolean;
+  public apiUrl: string;
 
   constructor(private http: HttpClient, private oidcSecurityService: OidcSecurityService) {
+    this.apiUrl = environment.invoicingApi;
     this.dataSource = new InvoicesDataSource(http,oidcSecurityService);
     this.dataSource.getIsLoading().subscribe(value => { this.invoicesIsLoading = value; () => console.log("Nev value in isLoadfing"); } );
    }

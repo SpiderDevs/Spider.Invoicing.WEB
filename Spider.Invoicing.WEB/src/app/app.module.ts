@@ -44,6 +44,7 @@ import { OidcSecurityService } from './auth/services/oidc.security.service';
 import { OpenIDImplicitFlowConfiguration } from './auth/modules/auth.configuration';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -104,9 +105,9 @@ export class AppModule {
 
       let openIDImplicitFlowConfiguration = new OpenIDImplicitFlowConfiguration();
 
-      openIDImplicitFlowConfiguration.stsServer = 'http://localhost:44318';
-      openIDImplicitFlowConfiguration.redirect_url = 'http://localhost:4200';
-      openIDImplicitFlowConfiguration.post_logout_redirect_uri = 'http://localhost:4200/Unauthorized';
+      openIDImplicitFlowConfiguration.stsServer = environment.identityServer;
+      openIDImplicitFlowConfiguration.redirect_url = environment.host;
+      openIDImplicitFlowConfiguration.post_logout_redirect_uri = environment.host + '/Unauthorized';
       // The Client MUST validate that the aud (audience) Claim contains its client_id value registered at the Issuer identified by the iss (issuer) Claim as an audience.
       // The ID Token MUST be rejected if the ID Token does not list the Client as a valid audience, or if it contains additional audiences not trusted by the Client.
       openIDImplicitFlowConfiguration.client_id = 'angularclientidtokenonly';

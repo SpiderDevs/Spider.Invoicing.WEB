@@ -9,6 +9,7 @@ import { Invoice } from './models/invoice.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 
 export class InvoicesDataSource extends DataSource<any> {
@@ -41,6 +42,6 @@ export class InvoicesDataSource extends DataSource<any> {
         .set("Access-Control-Allow-Methods","GET")
         .set("Access-Control-Allow-Origin","*")
         .set('Access-Control-Allow-Credentials', "true");
-        return this.http.get<ResponseBase<Invoice[]>>('http://localhost:64343/api/invoicing',{headers});
+        return this.http.get<ResponseBase<Invoice[]>>( environment.invoicingApi + '/api/invoicing',{headers});
     }
 }

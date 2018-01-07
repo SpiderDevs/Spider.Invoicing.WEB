@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  invoicingApi: 'http://localhost:64343/',
+  identityServer: 'http://localhost:44318/',
+  host: 'http://localhost:4200/',
 };
