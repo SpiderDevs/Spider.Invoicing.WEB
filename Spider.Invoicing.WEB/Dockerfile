@@ -26,4 +26,4 @@ COPY . /usr/src/app
 EXPOSE 4200
 
 # Serve the app
-CMD ["ng", "serve", "-H", "0.0.0.0", "--env=uat"]
+CMD ["ng", "serve", "-H", "0.0.0.0", "--env=uat","--disableHostCheck", "true"]
