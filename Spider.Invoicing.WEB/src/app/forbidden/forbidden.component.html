@@ -1,7 +1,7 @@
 <mat-grid-list cols="12" rowHeight="50px">
   <mat-grid-tile [colspan]="12"><h1>403</h1></mat-grid-tile>
   <mat-grid-tile [colspan]="12"><h2>You have no rights to access this.</h2></mat-grid-tile>
-  <mat-grid-tile [colspan]="12"><h2> <a (click)="login()"> Login </a> to get access</h2></mat-grid-tile>
+  <mat-grid-tile [colspan]="12"><h2> <button mat-button style="font-size: 1em;" (click)="login()"> Login </button> to get access</h2></mat-grid-tile>
   <mat-grid-tile [rowspan]="8" [colspan]="3"></mat-grid-tile>
   <mat-grid-tile [rowspan]="8" [colspan]="6"><img  src="{{forbiddenImgUrl}}" alt="Forbidden img" width="400" height="400"></mat-grid-tile>
   <mat-grid-tile [rowspan]="8" [colspan]="3"></mat-grid-tile>
