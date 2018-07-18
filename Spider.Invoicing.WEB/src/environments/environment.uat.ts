@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  invoicingApi: 'http://laptop:15030',
-  identityServer: 'http://laptop:15000',
-  host: 'http://laptop:4200',
+  invoicingApi: 'http://spiderdev.ml:15030',
+  identityServer: 'http://spiderdev.ml:15000',
+  host: 'http://spiderdev.ml:4200',
 };
