@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  invoicingApi: 'http://localhost:64343/',
-  identityServer: 'http://localhost:44318',
-  host: 'http://localhost:4200/',
+  invoicingApi: 'http://localhost:64343',
+  identityServer: 'http://localhost:55369',
+  host: 'http://localhost:4200',
 };

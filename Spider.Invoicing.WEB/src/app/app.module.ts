@@ -33,9 +33,10 @@ import {
 } from '@angular/material';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing/app-routing.module'
+import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { InvoicingComponent } from './invoicing/invoicing.component';
+import { NewInvoiceComponent } from './invoicing/new/newinvoice.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/modules/auth.module';
@@ -45,13 +46,16 @@ import { OpenIDImplicitFlowConfiguration } from './auth/modules/auth.configurati
 import { HttpModule, JsonpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './auth/tokenInterceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     InvoicingComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    NewInvoiceComponent
   ],
   imports: [
     BrowserModule,
@@ -95,8 +99,13 @@ import { environment } from '../environments/environment';
     MatNativeDateModule,
   ],
   providers: [
-  OidcSecurityService,
-  AuthGuard
+    OidcSecurityService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

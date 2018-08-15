@@ -34,14 +34,7 @@ export class InvoicesDataSource extends DataSource<any> {
     }
 
     getInvoices(): Observable<ResponseBase<Invoice[]>> {
-        this.loading.next(true);
-        console.log("Bearer "+ this.oidcSecurityService.getToken());
-        const headers = new HttpHeaders()
-        .set("Authorization", "Bearer "+ this.oidcSecurityService.getToken())
-        .set("Access-Control-Allow-Headers","Content-Type")
-        .set("Access-Control-Allow-Methods","GET")
-        .set("Access-Control-Allow-Origin","*")
-        .set('Access-Control-Allow-Credentials', "true");
-        return this.http.get<ResponseBase<Invoice[]>>( environment.invoicingApi + '/api/invoicing',{headers});
+        this.loading.next(true);     
+        return this.http.get<ResponseBase<Invoice[]>>( environment.invoicingApi + '/api/invoicing');
     }
 }

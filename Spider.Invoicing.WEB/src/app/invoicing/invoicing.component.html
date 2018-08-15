@@ -1,7 +1,13 @@
-<h2>
- Yours invoices
-</h2>
-
+<div>
+    <mat-toolbar>  
+      <h2>
+        Yours invoices 
+      </h2>
+      <button mat-button (click)="newInvoice($event)">
+        <span style="padding: 1px"> Add new invoice </span> <i class="material-icons app-toolbar-menu">open_in_new</i>
+      </button> 
+    </mat-toolbar>  
+</div>
 <div class="mat-progress-bar">
     <mat-progress-bar mode="indeterminate" *ngIf="invoicesIsLoading"></mat-progress-bar>
 </div>
